@@ -41,7 +41,7 @@ namespace Com.Danliris.Service.Packing.Inventory.Application.ToBeRefactored.Garm
             intro.Add(new Chunk("Mohon dibayarkan uang sebesar ", normal_font));
             intro.Add(new Chunk("USD " + string.Format("{0:n2}", totalPremi), normal_font_bold));
 
-            var terbilang = NumberToTextIDN.terbilangDollar((double)totalPremi).Contains("UD Dollar") ? NumberToTextIDN.terbilangDollar((double)totalPremi) : NumberToTextIDN.terbilangDollar((double)totalPremi) + " US Dollar";
+            var terbilang = NumberToTextIDN.terbilangDollar((double)totalPremi).Contains("US Dollar") ? NumberToTextIDN.terbilangDollar((double)totalPremi) : NumberToTextIDN.terbilangDollar((double)totalPremi) + " US Dollar";
 
             intro.Add(new Chunk($" (terbilang : {terbilang}) untuk pembayaran polis asuransi proteksi piutang " +
                 $"dagang ke {viewModel.insurance.Name}.\n", normal_font));

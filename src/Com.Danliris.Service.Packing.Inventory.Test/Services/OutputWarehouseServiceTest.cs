@@ -153,8 +153,7 @@ namespace Com.Danliris.Service.Packing.Inventory.Test.Services
                             PackagingType = "s",
                             PackagingUnit = "a",
                             PackagingQty = 10,
-                            QtyOrder = 10,
-                            ProductPackingCode = "123"
+                            QtyOrder = 10
                         }
                     }
                 };
@@ -233,8 +232,7 @@ namespace Com.Danliris.Service.Packing.Inventory.Test.Services
                             PackagingType = "s",
                             PackagingUnit = "a",
                             PackagingQty = 10,
-                            QtyOrder = 10,
-                            ProductPackingCode = "123,124"
+                            QtyOrder = 10
                         }
                     }
                 };
@@ -609,7 +607,7 @@ namespace Com.Danliris.Service.Packing.Inventory.Test.Services
         [Fact]
         public async Task Should_Success_InsertNewToShippingNoSummary()
         {
-            var inputRepoMock = new Mock<IDyeingPrintingAreaInputRepository>();
+            var inputRepoMock = new Mock<IDyeingPrintingAreaOutputRepository>();
             var inputProductionOrderRepoMock = new Mock<IDyeingPrintingAreaInputProductionOrderRepository>();
             var movementRepoMock = new Mock<IDyeingPrintingAreaMovementRepository>();
             var summaryRepoMock = new Mock<IDyeingPrintingAreaSummaryRepository>();
@@ -657,7 +655,7 @@ namespace Com.Danliris.Service.Packing.Inventory.Test.Services
         [Fact]
         public async Task Should_Success_InsertNewToShippingHasPreviousSummary()
         {
-            var inputRepoMock = new Mock<IDyeingPrintingAreaInputRepository>();
+            var inputRepoMock = new Mock<IDyeingPrintingAreaOutputRepository>();
             var inputProductionOrderRepoMock = new Mock<IDyeingPrintingAreaInputProductionOrderRepository>();
             var movementRepoMock = new Mock<IDyeingPrintingAreaMovementRepository>();
             var summaryRepoMock = new Mock<IDyeingPrintingAreaSummaryRepository>();
@@ -704,7 +702,7 @@ namespace Com.Danliris.Service.Packing.Inventory.Test.Services
         [Fact]
         public async Task Should_Success_InsertNewToIMNoSummary()
         {
-            var inputRepoMock = new Mock<IDyeingPrintingAreaInputRepository>();
+            var inputRepoMock = new Mock<IDyeingPrintingAreaOutputRepository>();
             var inputProductionOrderRepoMock = new Mock<IDyeingPrintingAreaInputProductionOrderRepository>();
             var movementRepoMock = new Mock<IDyeingPrintingAreaMovementRepository>();
             var summaryRepoMock = new Mock<IDyeingPrintingAreaSummaryRepository>();
@@ -752,7 +750,7 @@ namespace Com.Danliris.Service.Packing.Inventory.Test.Services
         [Fact]
         public async Task Should_Success_InsertNewToIMHasPreviousSummary()
         {
-            var inputRepoMock = new Mock<IDyeingPrintingAreaInputRepository>();
+            var inputRepoMock = new Mock<IDyeingPrintingAreaOutputRepository>();
             var inputProductionOrderRepoMock = new Mock<IDyeingPrintingAreaInputProductionOrderRepository>();
             var movementRepoMock = new Mock<IDyeingPrintingAreaMovementRepository>();
             var summaryRepoMock = new Mock<IDyeingPrintingAreaSummaryRepository>();
@@ -799,7 +797,7 @@ namespace Com.Danliris.Service.Packing.Inventory.Test.Services
         [Fact]
         public async Task Should_Success_InsertToShippingExistingOutputHasSummary()
         {
-            var inputRepoMock = new Mock<IDyeingPrintingAreaInputRepository>();
+            var inputRepoMock = new Mock<IDyeingPrintingAreaOutputRepository>();
             var inputProductionOrderRepoMock = new Mock<IDyeingPrintingAreaInputProductionOrderRepository>();
             var movementRepoMock = new Mock<IDyeingPrintingAreaMovementRepository>();
             var summaryRepoMock = new Mock<IDyeingPrintingAreaSummaryRepository>();
@@ -844,7 +842,7 @@ namespace Com.Danliris.Service.Packing.Inventory.Test.Services
         [Fact]
         public async Task Should_Success_InsertToShippingExistingOutputNoSummary()
         {
-            var inputRepoMock = new Mock<IDyeingPrintingAreaInputRepository>();
+            var inputRepoMock = new Mock<IDyeingPrintingAreaOutputRepository>();
             var inputProductionOrderRepoMock = new Mock<IDyeingPrintingAreaInputProductionOrderRepository>();
             var movementRepoMock = new Mock<IDyeingPrintingAreaMovementRepository>();
             var summaryRepoMock = new Mock<IDyeingPrintingAreaSummaryRepository>();
@@ -892,7 +890,7 @@ namespace Com.Danliris.Service.Packing.Inventory.Test.Services
         [Fact]
         public async Task Should_Success_InsertToIMExistingOutputHasSummary()
         {
-            var inputRepoMock = new Mock<IDyeingPrintingAreaInputRepository>();
+            var inputRepoMock = new Mock<IDyeingPrintingAreaOutputRepository>();
             var inputProductionOrderRepoMock = new Mock<IDyeingPrintingAreaInputProductionOrderRepository>();
             var movementRepoMock = new Mock<IDyeingPrintingAreaMovementRepository>();
             var summaryRepoMock = new Mock<IDyeingPrintingAreaSummaryRepository>();
@@ -1283,7 +1281,7 @@ namespace Com.Danliris.Service.Packing.Inventory.Test.Services
         [Fact]
         public async Task Should_Success_InsertToIMExistingOutputNoSummary()
         {
-            var inputRepoMock = new Mock<IDyeingPrintingAreaInputRepository>();
+            var inputRepoMock = new Mock<IDyeingPrintingAreaOutputRepository>();
             var inputProductionOrderRepoMock = new Mock<IDyeingPrintingAreaInputProductionOrderRepository>();
             var movementRepoMock = new Mock<IDyeingPrintingAreaMovementRepository>();
             var summaryRepoMock = new Mock<IDyeingPrintingAreaSummaryRepository>();

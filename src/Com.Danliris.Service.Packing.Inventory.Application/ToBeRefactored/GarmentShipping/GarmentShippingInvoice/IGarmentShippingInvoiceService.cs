@@ -2,6 +2,7 @@
 using Com.Danliris.Service.Packing.Inventory.Application.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,8 +11,10 @@ namespace Com.Danliris.Service.Packing.Inventory.Application.ToBeRefactored.Garm
 	public interface IGarmentShippingInvoiceService
 	{
 		Task<int> Create(GarmentShippingInvoiceViewModel viewModel);
-		Task<GarmentShippingInvoiceViewModel> ReadById(int id);
-		ListResult<GarmentShippingInvoiceViewModel> Read(int page, int size, string filter, string order, string keyword);
+        Task<GarmentShippingInvoiceViewModel> ReadById(int id);
+        IQueryable<ShippingPackingListViewModel> ReadShippingPackingList(int month, int year);
+        IQueryable<ShippingPackingListViewModel> ReadShippingPackingListNow(int month, int year);
+        ListResult<GarmentShippingInvoiceViewModel> Read(int page, int size, string filter, string order, string keyword);
 		Task<int> Update(int id, GarmentShippingInvoiceViewModel viewModel);
 		Task<int> Delete(int id);
         Buyer GetBuyer(int id);

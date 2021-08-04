@@ -57,8 +57,6 @@ using Com.Danliris.Service.Packing.Inventory.Infrastructure.EntityConfigurations
 using Com.Danliris.Service.Packing.Inventory.Data.Models.Garmentshipping.GarmentShippingCostStructure;
 using Com.Danliris.Service.Packing.Inventory.Data.Models.DyeingPrintingStockOpname;
 using Com.Danliris.Service.Packing.Inventory.Infrastructure.EntityConfigurations.DyeingPrintingStockOpname;
-using Com.Danliris.Service.Packing.Inventory.Data.Models.Garmentshipping.GarmentDebiturBalance;
-using Com.Danliris.Service.Packing.Inventory.Infrastructure.EntityConfigurations.GarmentShipping.GarmentDebiturBalance;
 
 namespace Com.Danliris.Service.Packing.Inventory.Infrastructure
 {
@@ -147,6 +145,7 @@ namespace Com.Danliris.Service.Packing.Inventory.Infrastructure
 
         public DbSet<GarmentShippingLocalPriceCuttingNoteModel> GarmentShippingLocalPriceCuttingNotes { get; set; }
         public DbSet<GarmentShippingLocalPriceCuttingNoteItemModel> GarmentShippingLocalPriceCuttingNoteItems { get; set; }
+        
         public DbSet<GarmentDebiturBalanceModel> GarmentDebiturBalances { get; set; }
 
         #region master
@@ -234,7 +233,6 @@ namespace Com.Danliris.Service.Packing.Inventory.Infrastructure
             modelBuilder.ApplyConfiguration(new GarmentShippingLocalSalesNoteItemConfig());
 
             modelBuilder.ApplyConfiguration(new GarmentLocalCoverLetterConfig());
-            modelBuilder.ApplyConfiguration(new GarmentDebiturBalanceEntityTypeConfiguration());
 
             modelBuilder.ApplyConfiguration(new GarmentShippingLocalSalesDOConfig());
             modelBuilder.ApplyConfiguration(new GarmentShippingLocalSalesDOItemConfig());

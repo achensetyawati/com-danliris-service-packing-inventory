@@ -69,7 +69,6 @@ namespace Com.Danliris.Service.Packing.Inventory.Infrastructure.Repositories.Dye
             modelToUpdate.SetArea(model.Area, _identityProvider.Username, UserAgent);
             modelToUpdate.SetDestinationArea(model.DestinationArea, _identityProvider.Username, UserAgent);
             modelToUpdate.SetHasNextAreaDocument(model.HasNextAreaDocument, _identityProvider.Username, UserAgent);
-            modelToUpdate.SetNextAreaInputStatus(model.NextAreaInputStatus, _identityProvider.Username, UserAgent);
             modelToUpdate.SetBalance(model.Balance, _identityProvider.Username, UserAgent);
             modelToUpdate.SetBuyer(model.BuyerId, model.Buyer, _identityProvider.Username, UserAgent);
             modelToUpdate.SetCartNo(model.CartNo, _identityProvider.Username, UserAgent);
@@ -169,18 +168,5 @@ namespace Com.Danliris.Service.Packing.Inventory.Infrastructure.Repositories.Dye
 
             return _dbContext.SaveChangesAsync();
         }
-
-        public Task<int> UpdateOutputBalancePackingQtyFromInput(int Id, decimal inputPackingQty) {
-            var modelToUpdate = _dbSet.FirstOrDefault(entity => entity.Id == Id);
-            if (modelToUpdate != null) {
-                var newQtyPacking = modelToUpdate.PackagingQty - inputPackingQty;
-                modelToUpdate.SetPackagingQty(newQtyPacking, _identityProvider.Username, UserAgent);
-
-                var newBalance = modelToUpdate.PackagingLength * (double) newQtyPacking;
-                modelToUpdate.SetBalance(newBalance, _identityProvider.Username, UserAgent);
-            }
-            return _dbContext.SaveChangesAsync();
-        }
-
     }
 }

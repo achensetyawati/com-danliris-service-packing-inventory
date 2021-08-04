@@ -17,12 +17,13 @@ namespace Com.Danliris.Service.Packing.Inventory.Application.ToBeRefactored.Garm
 	public class GarmentShippingInvoiceService : IGarmentShippingInvoiceService
 	{
 		private readonly IGarmentShippingInvoiceRepository _repository;
+        private readonly IGarmentPackingListRepository plrepository;
         private readonly IServiceProvider serviceProvider;
 
         public GarmentShippingInvoiceService(IServiceProvider serviceProvider)
 		{
 			_repository = serviceProvider.GetService<IGarmentShippingInvoiceRepository>();
-
+            plrepository = serviceProvider.GetService<IGarmentPackingListRepository>();
             this.serviceProvider = serviceProvider;
 
         }
@@ -289,6 +290,48 @@ namespace Com.Danliris.Service.Packing.Inventory.Application.ToBeRefactored.Garm
             {
                 return null;
             }
+        }
+
+        public IQueryable<ShippingPackingListViewModel> ReadShippingPackingList(int month, int year)
+        {
+            var queryInv = _repository.ReadAll();
+            var queryPL = plrepository.ReadAll();
+
+            var query = from a in queryInv
+                        join b in queryPL
+                        on a.PackingListId equals b.Id
+                        where b.TruckingDate.Month < month && b.TruckingDate.Year == year
+                        select new ShippingPackingListViewModel
+                        {
+                            BuyerAgentCode = a.BuyerAgentCode,
+                            BuyerAgentName = a.BuyerAgentName,
+                            Amount = a.TotalAmount,
+                            InvoiceId = a.Id,
+                            TruckingDate= b.TruckingDate
+                        };
+            
+            return query.AsQueryable();
+
+        }
+        public IQueryable<ShippingPackingListViewModel> ReadShippingPackingListNow(int month, int year)
+        {
+            var queryInv = _repository.ReadAll();
+            var queryPL = plrepository.ReadAll();
+
+            var query = from a in queryInv
+                        join b in queryPL
+                        on a.PackingListId equals b.Id
+                        where b.TruckingDate.Month == month && b.TruckingDate.Year == year
+                        select new ShippingPackingListViewModel
+                        {
+                            BuyerAgentCode = a.BuyerAgentCode,
+                            BuyerAgentName = a.BuyerAgentName,
+                            Amount = a.TotalAmount,
+                            InvoiceId = a.Id,
+                            TruckingDate = b.TruckingDate
+                        };
+
+            return query.AsQueryable();
         }
     }
 }

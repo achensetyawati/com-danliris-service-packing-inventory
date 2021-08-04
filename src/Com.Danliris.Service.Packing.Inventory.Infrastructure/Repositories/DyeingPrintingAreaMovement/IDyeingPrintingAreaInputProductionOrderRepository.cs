@@ -27,6 +27,5 @@ namespace Com.Danliris.Service.Packing.Inventory.Infrastructure.Repositories.Dye
         Task<Tuple<int, List<PackingData>>> UpdatePackingFromOut(string destinationArea, string productionOrderNo, string grade, double balance);
         Task<int> RestorePacking(string destinationArea, List<PackingData> packingData);
         Task<int> UpdateFromNextAreaInputPackingAsync(List<PackingData> packingData);
-        bool CheckIfHasInInput(string code);
     }
 }
