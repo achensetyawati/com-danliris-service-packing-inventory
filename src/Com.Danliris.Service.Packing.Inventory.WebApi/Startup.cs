@@ -194,6 +194,9 @@ using Com.Danliris.Service.Packing.Inventory.Application.ToBeRefactored.AR.CMT;
 using Com.Danliris.Service.Packing.Inventory.Application.ToBeRefactored.AR.DownPayment;
 using Com.Danliris.Service.Packing.Inventory.Application.ToBeRefactored.AR.OmzetCorrectionService;
 using Com.Danliris.Service.Packing.Inventory.Application.ToBeRefactored.AR.AR_ReportMutation;
+using Azure.Security.KeyVault.Secrets;
+using Azure.Identity;
+using System;
 
 namespace Com.Danliris.Service.Packing.Inventory.WebApi
 {
@@ -225,14 +228,19 @@ namespace Com.Danliris.Service.Packing.Inventory.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = Configuration.GetConnectionString(DEFAULT_CONNECTION) ?? Configuration[DEFAULT_CONNECTION];
+            //var connectionString = Configuration.GetConnectionString(DEFAULT_CONNECTION) ?? Configuration[DEFAULT_CONNECTION];
+            var keyVaultEnpoint = new Uri(Configuration["VaultKey"]);
+            var secretClient = new SecretClient(keyVaultEnpoint, new DefaultAzureCredential());
+
+            KeyVaultSecret kvs = secretClient.GetSecret(Configuration["VaultKeySecret"]);
+
             services
                 .AddEntityFrameworkSqlServer()
-                .AddDbContext<PackingInventoryDbContext>(options =>
-                {
-                    options.UseSqlServer(connectionString);
-                });
-
+                //.AddDbContext<PackingInventoryDbContext>(options =>
+                //{
+                //    options.UseSqlServer(connectionString);
+                //});
+                .AddDbContext<PackingInventoryDbContext>(option => option.UseSqlServer(kvs.Value));
             RegisterApplicationSetting();
 
             // Register Middleware
